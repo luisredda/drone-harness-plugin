@@ -1,6 +1,6 @@
 import requests
 import json
-from os import environ
+import os
 
 ACCOUNT_ID = os.environ.get('PLUGIN_ACCOUNTID')
 API_KEY = os.environ.get('PLUGIN_APIKEY')
