@@ -19,7 +19,8 @@ steps:
   image: luisredda/test-plugin
   settings:  
     application: "Ecommerce"
-    pipeline: "Deploy to K8s"
+    type: "PIPELINE"
+    entityname: "Deploy to K8s"
     service: "search"
     build: "v6"
     accountid:
