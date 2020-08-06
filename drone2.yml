@@ -13,7 +13,7 @@ steps:
       from_secret: u_docker
     password: 
       from_secret: p_docker
-    repo: neounlimited/dronething
+    repo: luisredda/dronething
     auto_tag: true
 - name: harness-deploy
   image: luisredda/drone-harness-plugin
