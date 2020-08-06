@@ -1,0 +1,61 @@
+kind: pipeline
+name: default
+
+steps:
+- name: build
+  image: python
+  commands:
+  - pip install -r requirements.txt
+- name: publish
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: u_docker
+    password: 
+      from_secret: p_docker
+    repo: luisredda/test-plugin
+    auto_tag: true
+- name: harness-deploy
+  image: luisredda/test-plugin
+  settings:  
+    application: "Ecommerce"
+    pipeline: "Deploy to K8s"
+    service: "search"
+    build: "v6"
+    accountid:
+      from_secret: harness_acctid
+    apikey: 
+      from_secret: harness_secret
+    body: |
+     variableInputs: [ 
+      { 
+        name: "Environment" 
+        variableValue: { 
+          type: NAME
+          value: "dev"
+        }
+      },
+      {
+        name: "InfraDefinition_Kubernetes"
+        variableValue: {
+          type: NAME
+          value: "k8s dev"
+        }
+      },
+      {
+        name: "Service"
+        variableValue: {
+          type: NAME
+          value: "search"
+        }
+      }
+      ], 
+      serviceInputs: [ {
+        name: "search", 
+        artifactValueInput: {
+          valueType: BUILD_NUMBER
+          buildNumber: {
+            buildNumber: "v6"
+      artifactSourceName: "luisredda_microservice"
+          }
+        }}  ]
