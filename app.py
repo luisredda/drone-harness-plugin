@@ -5,7 +5,7 @@ from os import environ
 ACCOUNT_ID = os.environ.get('PLUGIN_ACCOUNTID')
 API_KEY = os.environ.get('PLUGIN_APIKEY')
 APPLICATION_NAME = os.environ.get('PLUGIN_APPLICATION')
-WORKFLOW_NAME = os.environ.get('PLUGIN_PIPELINE')
+WORKFLOW_NAME = os.environ.get('PLUGIN_ENTITYNAME')
 BODY = os.environ.get('PLUGIN_BODY')
 EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
 
@@ -83,5 +83,5 @@ if EXECUTION_TYPE == "WORKFLOW":
   WfID = getWfByName(AppID, WORKFLOW_NAME)
   execute(AppID, WfID, "")
 else:
-  PlID = getWfByName(AppID, WORKFLOW_NAME)
+  PlID = getPLByName(AppID, WORKFLOW_NAME)
   execute(AppID, "", PlID)
