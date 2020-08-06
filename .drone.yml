@@ -13,10 +13,10 @@ steps:
       from_secret: u_docker
     password: 
       from_secret: p_docker
-    repo: luisredda/test-plugin
+    repo: luisredda/drone-harness-plugin
     auto_tag: true
 - name: harness-deploy
-  image: luisredda/test-plugin
+  image: luisredda/drone-harness-plugin
   settings:  
     application: "Ecommerce"
     type: "PIPELINE"
@@ -29,34 +29,20 @@ steps:
       from_secret: harness_secret
     body: |
      variableInputs: [ 
-      { 
-        name: "Environment" 
-        variableValue: { 
-          type: NAME
-          value: "dev"
-        }
-      },
-      {
-        name: "InfraDefinition_Kubernetes"
-        variableValue: {
-          type: NAME
-          value: "k8s dev"
-        }
-      },
       {
         name: "Service"
         variableValue: {
           type: NAME
-          value: "search"
+          value: "order-service"
         }
       }
       ], 
       serviceInputs: [ {
-        name: "search", 
+        name: "order-service", 
         artifactValueInput: {
           valueType: BUILD_NUMBER
           buildNumber: {
-            buildNumber: "v6"
-      artifactSourceName: "luisredda_microservice"
+            buildNumber: "1"
+      artifactSourceName: "harness_todolist-sample"
           }
         }}  ]
