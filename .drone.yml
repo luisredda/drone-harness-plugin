@@ -18,9 +18,9 @@ steps:
 - name: harness-deploy
   image: luisredda/drone-harness-plugin
   settings:  
-    application: "Ecommerce"
+    application: "Harness Demo Application"
     type: "PIPELINE"
-    entityname: "Deploy to K8s"
+    entityname: "CD Pipeline"
     service: "search"
     build: "v6"
     accountid:
