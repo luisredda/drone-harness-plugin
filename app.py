@@ -55,7 +55,13 @@ def getPLByName(AppID, PLName):
       } \
     } \
     "
+    print ("Getting Harness Pipeline ID")
+
+    response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
+
+    json_response = response.json()
     PLID = json_response['data']['pipelineByName']['id']
+    print ("PLID is: " + PLID)
     return(PLID)
 
 def execute(appID, wfID, plID):
