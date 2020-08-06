@@ -55,7 +55,8 @@ def getPLByName(AppID, PLName):
       } \
     } \
     "
-
+    PLID = json_response['data']['pipelineByName']['id']
+    return(PLID)
 
 def execute(appID, wfID, plID):
     pload = "mutation { \
