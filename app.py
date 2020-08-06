@@ -64,7 +64,7 @@ def getPLByName(AppID, PLName):
     print ("PLID is: " + PLID)
     return(PLID)
 
-def execute(appID, wfID, plID):
+def execute(appID, wfID):
     pload = "mutation { \
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
@@ -88,7 +88,7 @@ AppID = (getAppByName(APPLICATION_NAME))
 
 if EXECUTION_TYPE == "WORKFLOW":
   WfID = getWfByName(AppID, WORKFLOW_NAME)
-  execute(AppID, WfID, "")
+  execute(AppID, WfID)
 else:
   PlID = getPLByName(AppID, WORKFLOW_NAME)
-  execute(AppID, "", PlID)
+  execute(AppID, PlID)
