@@ -1,12 +1,13 @@
 import requests
 import json
-import os
+from os import environ
 
 ACCOUNT_ID = os.environ.get('PLUGIN_ACCOUNTID')
 API_KEY = os.environ.get('PLUGIN_APIKEY')
 APPLICATION_NAME = os.environ.get('PLUGIN_APPLICATION')
 WORKFLOW_NAME = os.environ.get('PLUGIN_PIPELINE')
 BODY = os.environ.get('PLUGIN_BODY')
+EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
 
 global URL
 URL = "https://app.harness.io/gateway/api/graphql?accountId=" + ACCOUNT_ID
@@ -47,12 +48,21 @@ def getWfByName(AppID, WFName):
 
     return(WFID)
 
-def executeWorkflow(appID, wfID):
+def getPLByName(AppID, PLName):
+    pload = " { \
+        pipelineByName( pipelineName: \"" + PLName + "\", applicationId: \"" +  AppID + "\") { \
+            id \
+      } \
+    } \
+    "
+
+
+def execute(appID, wfID, plID):
     pload = "mutation { \
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
                 entityId: \"" + wfID + "\" \
-                executionType: WORKFLOW, " + BODY + \
+                executionType: " + EXECUTION_TYPE + ", " + BODY + \
               "} \
               ){ \
                 clientMutationId \
@@ -68,5 +78,10 @@ def executeWorkflow(appID, wfID):
     print(json_response)
 
 AppID = (getAppByName(APPLICATION_NAME))
-WfID = getWfByName(AppID, WORKFLOW_NAME)
-executeWorkflow(AppID, WfID)
+
+if EXECUTION_TYPE == "WORKFLOW":
+  WfID = getWfByName(AppID, WORKFLOW_NAME)
+  execute(AppID, WfID, "")
+else:
+  PlID = getWfByName(AppID, WORKFLOW_NAME)
+  execute(AppID, "", PlID)
