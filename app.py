@@ -9,6 +9,8 @@ WORKFLOW_NAME = os.environ.get('PLUGIN_ENTITYNAME')
 BODY = os.environ.get('PLUGIN_BODY')
 EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
 
+echo "Teste"
+
 global URL
 URL = "https://app.harness.io/gateway/api/graphql?accountId=" + ACCOUNT_ID
 
