@@ -4,5 +4,5 @@ COPY app.py /app
 WORKDIR /app
 RUN pip install requests
 
-ENTRYPOINT ["python"]
-CMD ["/app/app.py"]
+ENTRYPOINT ["python", "/app/app.py"]
+
