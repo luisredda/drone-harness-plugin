@@ -105,8 +105,8 @@ def execute(appID, wfID):
         artifactValueInput: {\
           valueType: BUILD_NUMBER\
           buildNumber: {\
-            buildNumber: "1"\
-      artifactSourceName: "harness_todolist-sample"\
+            buildNumber: "'+BUILD_NUMBER+'"\
+      artifactSourceName: "'+ARTIFACT_SOURCE_NAME+'"\
           }\
         }}  ]'\
       
