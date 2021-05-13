@@ -96,12 +96,12 @@ def execute(appID, wfID):
         name: "Service"\
         variableValue: {\
           type: NAME\
-          value: "order-service"\
+          value: "'+SERVICE_NAME+'"\
         }\
       }\
       ], \
       serviceInputs: [ {\
-        name: "order-service", \
+        name: "'+SERVICE_NAME+'", \
         artifactValueInput: {\
           valueType: BUILD_NUMBER\
           buildNumber: {\
