@@ -14,7 +14,7 @@ steps:
       from_secret: DockerHub
     repo: diegokoala/drone-harness-plugin
     auto_tag: true
-- name: harness-deploy
+- name: plugin test - harness pipe deploy
   image: diegokoala/drone-harness-plugin
   settings:  
     application: "Harness Demo Application"
