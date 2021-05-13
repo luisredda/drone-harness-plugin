@@ -72,25 +72,6 @@ def execute(appID, wfID):
     print("Build Number: " + BUILD_NUMBER)
     print("Artifact Source Name: " + ARTIFACT_SOURCE_NAME)
     print("Execution Type: " + EXECUTION_TYPE)
-    
-    body = 'variableInputs: [ \
-      {\
-        name: "Service"\
-        variableValue: {\
-          type: NAME\
-          value: "' + SERVICE_NAME + '"\
-        }\
-      }\
-      ], \
-      serviceInputs: [ {\
-        name: "' + SERVICE_NAME + '", \
-        artifactValueInput: {\
-          valueType: BUILD_NUMBER\
-          buildNumber: {\
-            buildNumber: "' + BUILD_NUMBER + '\
-      artifactSourceName: "' + ARTIFACT_SOURCE_NAME + '"\
-          }\
-        }}  ]'
     body = 'variableInputs: [ \
       {\
         name: "Service"\
@@ -108,9 +89,9 @@ def execute(appID, wfID):
             buildNumber: "'+BUILD_NUMBER+'"\
       artifactSourceName: "'+ARTIFACT_SOURCE_NAME+'"\
           }\
-        }}  ]'\
+        }}  ]'
       
-    print("Body: " + body)
+    
     pload = "mutation { \
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
@@ -125,7 +106,7 @@ def execute(appID, wfID):
                 } \
               } \
             }"
-    print("Payload: " + pload)
+    #print("Payload: " + pload)
     response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
     json_response = response.json()
     print(json_response)
