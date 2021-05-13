@@ -9,14 +9,13 @@ steps:
 - name: publish
   image: plugins/docker
   settings:
-    username:
-      from_secret: u_docker
+    username: diegokoala
     password: 
-      from_secret: p_docker
-    repo: luisredda/drone-harness-plugin
+      from_secret: DockerHub
+    repo: diegokoala/drone-harness-plugin
     auto_tag: true
 - name: harness-deploy
-  image: luisredda/drone-harness-plugin
+  image: diegokoala/drone-harness-plugin
   settings:  
     application: "Harness Demo Application"
     type: "PIPELINE"
@@ -27,22 +26,7 @@ steps:
       from_secret: harness_acctid
     apikey: 
       from_secret: harness_secret
-    body: |
-     variableInputs: [ 
-      {
-        name: "Service"
-        variableValue: {
-          type: NAME
-          value: "order-service"
-        }
-      }
-      ], 
-      serviceInputs: [ {
-        name: "order-service", 
-        artifactValueInput: {
-          valueType: BUILD_NUMBER
-          buildNumber: {
-            buildNumber: "1"
-      artifactSourceName: "harness_todolist-sample"
-          }
-        }}  ]
+    service_name: "order-service"
+    build_number: "latest"
+    artifact_source_name: "harness_todolist-sample"
+    
