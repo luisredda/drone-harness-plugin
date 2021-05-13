@@ -6,7 +6,7 @@ ACCOUNT_ID = os.environ.get('PLUGIN_ACCOUNTID')
 API_KEY = os.environ.get('PLUGIN_APIKEY')
 APPLICATION_NAME = os.environ.get('PLUGIN_APPLICATION')
 WORKFLOW_NAME = os.environ.get('PLUGIN_ENTITYNAME')
-BODY = os.environ.get('PLUGIN_BODY')
+#BODY = os.environ.get('PLUGIN_BODY')
 EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
 SERVICE_NAME = os.environ.get('PLUGIN_SERVICE_NAME')
 BUILD_NUMBER = os.environ.get('PLUGIN_BUILD_NUMBER')
@@ -91,8 +91,25 @@ def execute(appID, wfID):
       artifactSourceName: "' + ARTIFACT_SOURCE_NAME + '"\
           }\
         }}  ]'
-        
-        
+    body = 'variableInputs: [ \
+      {\
+        name: "Service"\
+        variableValue: {\
+          type: NAME\
+          value: "order-service"\
+        }\
+      }\
+      ], \
+      serviceInputs: [ {\
+        name: "order-service", \
+        artifactValueInput: {\
+          valueType: BUILD_NUMBER\
+          buildNumber: {\
+            buildNumber: "1"\
+      artifactSourceName: "harness_todolist-sample"\
+          }\
+        }}  ]'\
+      
     print("Body: " + body)
     pload = "mutation { \
               startExecution(input: { \

@@ -1,6 +1,6 @@
 kind: pipeline
-name: default
 
+name: default
 steps:
 - name: build
   image: python
