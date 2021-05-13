@@ -8,6 +8,9 @@ APPLICATION_NAME = os.environ.get('PLUGIN_APPLICATION')
 WORKFLOW_NAME = os.environ.get('PLUGIN_ENTITYNAME')
 BODY = os.environ.get('PLUGIN_BODY')
 EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
+SERVICE_NAME = os.environ.get('PLUGIN_SERVICE_NAME')
+BUILD_NUMBER = os.environ.get('PLUGIN_BUILD_NUMBER')
+ARTIFACT_SOURCE_NAME = os.environ.get('PLUGIN_ARTIFACT_SOURCE_NAME')
 
 global URL
 URL = "https://app.harness.io/gateway/api/graphql?accountId=" + ACCOUNT_ID
@@ -65,6 +68,25 @@ def getPLByName(AppID, PLName):
     return(PLID)
 
 def execute(appID, wfID):
+      
+    body = 'variableInputs: [ \
+      {\
+        name: "Service"\
+        variableValue: {\
+          type: NAME\
+          value: "' + SERVICE_NAME + '"\
+        }\
+      }\
+      ], \
+      serviceInputs: [ {\
+        name: "' + SERVICE_NAME + '", \
+        artifactValueInput: {\
+          valueType: BUILD_NUMBER\
+          buildNumber: {\
+            buildNumber: "' + BUILD_NUMBER + '\
+      artifactSourceName: "' + ARTIFACT_SOURCE_NAME + '"\
+          }\
+        }}  ]'
     pload = "mutation { \
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
