@@ -68,7 +68,11 @@ def getPLByName(AppID, PLName):
     return(PLID)
 
 def execute(appID, wfID):
-      
+    print("Service Name: " + SERVICE_NAME)
+    print("Build Number: " + BUILD_NUMBER)
+    print("Artifact Source Name: " + ARTIFACT_SOURCE_NAME)
+    print("Execution Type: " + EXECUTION_TYPE)
+    
     body = 'variableInputs: [ \
       {\
         name: "Service"\
@@ -91,7 +95,7 @@ def execute(appID, wfID):
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
                 entityId: \"" + wfID + "\" \
-                executionType: " + EXECUTION_TYPE + ", " + BODY + \
+                executionType: " + EXECUTION_TYPE + ", " + body + \
               "} \
               ){ \
                 clientMutationId \
