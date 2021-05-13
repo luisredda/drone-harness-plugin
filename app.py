@@ -91,6 +91,9 @@ def execute(appID, wfID):
       artifactSourceName: "' + ARTIFACT_SOURCE_NAME + '"\
           }\
         }}  ]'
+        
+        
+    print("Body: " + body)
     pload = "mutation { \
               startExecution(input: { \
                 applicationId: \"" + appID + "\" \
@@ -105,7 +108,7 @@ def execute(appID, wfID):
                 } \
               } \
             }"
-
+    print("Payload: " + pload)
     response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
     json_response = response.json()
     print(json_response)
