@@ -26,7 +26,7 @@ Obs:
 
 To run this plugin outside drone, you should create this ENV variables before the container starts.
 
-You can added to the Dockerfile
+You can add to the Dockerfile
 
     ENV PLUGIN_ACCOUNTID "AccountID"
     ENV PLUGIN_APIKEY "4P1K3Y"
