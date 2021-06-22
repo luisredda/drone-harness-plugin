@@ -1,9 +1,5 @@
 # drone-harness-plugin
 
-This is work in progress...
-Demo!!!!
-!!
-!!!!!!!!
-!!!!!
-!!!
-!!!!!!
+Drone Plugin to trigger Pipelines or Workflows in Harness using API key.
+
+
