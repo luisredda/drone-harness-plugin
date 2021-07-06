@@ -16,7 +16,7 @@ steps:
     repo: luisredda/drone-harness-plugin-param
     auto_tag: true
 - name: harness-deploy
-  image: luisredda/drone-harness-plugin
+  image: luisredda/drone-harness-plugin-param
   settings:  
     application: "Harness Demo Application"
     type: "PIPELINE"
