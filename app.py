@@ -25,7 +25,7 @@ def getAppByName(appName):
 
     print ("Getting Harness App ID")
 
-    response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
+    response = requests.post(URL, headers={'x-api-key': API_KEY, 'Content-Type': 'text/plain'}, data=pload)
 
     json_response = response.json()
     appId = json_response['data']['applicationByName']['id']
@@ -43,7 +43,7 @@ def getWfByName(AppID, WFName):
     "
     print ("Getting Harness Workflow ID")
 
-    response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
+    response = requests.post(URL, headers={'x-api-key': API_KEY, 'Content-Type': 'text/plain'}, data=pload)
 
     json_response = response.json()
     WFID = json_response['data']['workflowByName']['id']
@@ -60,7 +60,7 @@ def getPLByName(AppID, PLName):
     "
     print ("Getting Harness Pipeline ID")
 
-    response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
+    response = requests.post(URL, headers={'x-api-key': API_KEY, 'Content-Type': 'text/plain'}, data=pload)
 
     json_response = response.json()
     PLID = json_response['data']['pipelineByName']['id']
@@ -107,7 +107,7 @@ def execute(appID, wfID):
               } \
             }"
     #print("Payload: " + pload)
-    response = requests.post(URL, headers={'x-api-key': API_KEY}, data=pload)
+    response = requests.post(URL, headers={'x-api-key': API_KEY, 'Content-Type': 'text/plain'}, data=pload)
     json_response = response.json()
     print(json_response)
 
