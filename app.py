@@ -11,6 +11,7 @@ EXECUTION_TYPE = os.environ.get('PLUGIN_TYPE')
 SERVICE_NAME = os.environ.get('PLUGIN_SERVICE_NAME')
 BUILD_NUMBER = os.environ.get('PLUGIN_BUILD_NUMBER')
 ARTIFACT_SOURCE_NAME = os.environ.get('PLUGIN_ARTIFACT_SOURCE_NAME')
+USER_NAME = os.environ.get('USER_NAME')
 
 global URL
 URL = "https://app.harness.io/gateway/api/graphql?accountId=" + ACCOUNT_ID
@@ -79,7 +80,14 @@ def execute(appID, wfID):
           type: NAME\
           value: "'+SERVICE_NAME+'"\
         }\
-      }\
+      }\,
+      {\
+        name: "User"\
+        variableValue: {\
+          type: NAME\
+          value: "'+USER_NAME+'"\
+        }\
+      }\      
       ], \
       serviceInputs: [ {\
         name: "'+SERVICE_NAME+'", \
