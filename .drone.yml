@@ -15,18 +15,3 @@ steps:
       from_secret: p_docker
     repo: luisredda/drone-harness-plugin-param
     auto_tag: true
-- name: harness-deploy
-  image: luisredda/drone-harness-plugin-param
-  settings:  
-    application: "Harness Demo Application"
-    type: "PIPELINE"
-    entityname: "CD Pipeline"
-    service: "search"
-    build: "v6"
-    accountid:
-      from_secret: harness_acctid
-    apikey: 
-      from_secret: harness_secret
-    service_name: "order-service"
-    build_number: "latest"
-    artifact_source_name: "harness_todolist-sample"
