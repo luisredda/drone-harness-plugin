@@ -1,9 +1,3 @@
 # drone-harness-plugin
 
-This is work in progress...
-Demo!!!!
-!!
-!!!!!!!!
-!!!!!
-!!!
-!!!!!!
+This is a Drone/Harness CI Enterprise plugin that can be used to trigger Harness CD workflow or pipelines. 
