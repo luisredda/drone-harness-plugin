@@ -2,7 +2,9 @@ FROM python:3.7.5-slim
 
 RUN mkdir /opt/app
 COPY app.py /opt/app
+COPY requirements.txt /opt/app
 WORKDIR /opt/app
+
 RUN pip install -r requirements.txt
 
 #ENV PLUGIN_ACCOUNTID "AccountID"
