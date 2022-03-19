@@ -3,7 +3,7 @@ FROM python:3.7.5-slim
 RUN mkdir /opt/app
 COPY app.py /opt/app
 WORKDIR /opt/app
-RUN pip install requests
+RUN pip install -r requirements.txt
 
 #ENV PLUGIN_ACCOUNTID "AccountID"
 #ENV PLUGIN_APIKEY "4P1K3Y"
