@@ -1,8 +1,10 @@
-# Drone Harness Plugin
+# Harness CIE / Drone Harness Plugin
 
 ## Harness CIE / Drone Plugin to trigger Pipelines or Workflows in Harness using API key.
 
-Limitations:
+Inspired by Luis Redda work
+
+Known Limitations:
 
 1 - Your service needs an artifact
 
