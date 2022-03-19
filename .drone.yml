@@ -30,6 +30,7 @@ steps:
     wait_for_execution: "true"
     wait_for_execution_timeout: 30
     execution_notes: "Harness Plugin Automated Execution"
+    return_error_if_execution_fail: "true"
 - name: Harness Plugin Test Workflow
   image: diegokoala/drone-harness-plugin:latest
   settings:  

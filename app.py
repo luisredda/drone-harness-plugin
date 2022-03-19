@@ -3,6 +3,7 @@ import requests
 import json
 import os
 import time
+import sys
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -19,7 +20,9 @@ ARTIFACT_SOURCE_NAME = os.environ.get('PLUGIN_ARTIFACT_SOURCE_NAME')
 DYNAMIC_VARIABLES_INPUT = os.environ.get('PLUGIN_DYNAMIC_VARIABLES_INPUT') or "false"
 WAIT_FOR_EXECUTION = os.environ.get('PLUGIN_WAIT_FOR_EXECUTION') or "false"
 WAIT_FOR_EXECUTION_TIMEOUT = int(os.environ.get('PLUGIN_WAIT_FOR_EXECUTION_TIMEOUT')) or 30
+RETURN_ERROR_IF_EXECUTION_FAIL = os.environ.get('PLUGIN_RETURN_ERROR_IF_EXECUTION_FAIL') or "false"
 EXECUTION_NOTES = os.environ.get('PLUGIN_EXECUTION_NOTES') or "Automated Execution"
+
 
 
 global URL
@@ -119,11 +122,13 @@ if EXECUTION_TYPE == "WORKFLOW":
   print("Status:" + workflow_status)
   if WAIT_FOR_EXECUTION == "true":
     timeout = time.time() + 60*WAIT_FOR_EXECUTION_TIMEOUT   # 30 minutes from now
-    while workflow_status == "RUNNING" or workflow_status == "PAUSED":
+    while workflow_status == "RUNNING" or workflow_status == "PAUSED" or workflow_status == "PAUSING" or workflow_status == "QUEUED" or workflow_status == "WAITING":
         time.sleep(15)
         workflow_status = status(execution_id['data']['startExecution']['execution']['id'])['data']['execution']['status']
-        if workflow_status != "RUNNING" or time.time() > timeout:
-            break
+        if time.time() > timeout:
+            sys.exit(777)
+    if RETURN_ERROR_IF_EXECUTION_FAIL == "true" and (workflow_status == "FAILED" or workflow_status == "ABORTED" or workflow_status == "EXPIRED" or workflow_status == "REJECTED" or workflow_status == "ERROR"):
+      sys.exit(333)
   print(workflow_status)
 
 else:
@@ -138,7 +143,9 @@ else:
         time.sleep(15)
         pipeline_status = status(execution_id['data']['startExecution']['execution']['id'])['data']['execution']['status']
         if time.time() > timeout:
-            break
+            sys.exit(777)
+    if RETURN_ERROR_IF_EXECUTION_FAIL == "true" and (pipeline_status == "FAILED" or pipeline_status == "ABORTED" or pipeline_status == "EXPIRED" or pipeline_status == "REJECTED" or pipeline_status == "ERROR"):
+      sys.exit(333)
   print(pipeline_status)
 
 
