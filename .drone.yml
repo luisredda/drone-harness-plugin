@@ -14,3 +14,19 @@ steps:
       from_secret: DockerHub
     repo: diegokoala/drone-harness-plugin
     auto_tag: true
+- name: Harness Plugin Test
+  image: diegokoala/drone-harness-plugin:latest
+  settings:  
+    application: "Harness Demo Application"
+    type: "PIPELINE"
+    entityname: "CD Pipeline"
+    accountid:
+      from_secret: harness_acctid
+    apikey: 
+      from_secret: harness_secret
+    service_name: "order-service"
+    build_number: "131"
+    artifact_source_name: "harness_todolist-sample_gcr"
+    wait_for_execution: "true"
+    wait_for_execution_timeout: 30
+    execution_notes: "Harness Plugin Automated Execution"
