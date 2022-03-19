@@ -134,10 +134,10 @@ else:
   print("Status:" + pipeline_status)
   if WAIT_FOR_EXECUTION == "true":
     timeout = time.time() + 60*30   # 30 minutes from now
-    while pipeline_status == "RUNNING" or pipeline_status == "PAUSED":
+    while pipeline_status == "RUNNING" or pipeline_status == "PAUSED" or pipeline_status == "PAUSING" or pipeline_status == "QUEUED" or pipeline_status == "WAITING":
         time.sleep(15)
         pipeline_status = status(execution_id['data']['startExecution']['execution']['id'])['data']['execution']['status']
-        if pipeline_status != "RUNNING" or time.time() > timeout:
+        if time.time() > timeout:
             break
   print(pipeline_status)
 
