@@ -49,6 +49,7 @@ steps:
     dynamic_variables_input: "Environment:development,InfraDefinition_Kubernetes:GKE Dev Cluster"
 - name: Harness Plugin Test Pipeline Error Test
   image: diegokoala/drone-harness-plugin:latest
+  failure: ignore
   settings:  
     application: "Harness Demo Application"
     type: "PIPELINE"
@@ -64,7 +65,6 @@ steps:
     wait_for_execution_timeout: 30
     execution_notes: "Harness Plugin Automated Execution"
     return_error_if_execution_fail: "true"
-    failure: ignore
 - name: Publish Stable
   image: plugins/docker
   settings:
