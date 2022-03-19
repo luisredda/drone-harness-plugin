@@ -14,7 +14,7 @@ steps:
       from_secret: DockerHub
     repo: diegokoala/drone-harness-plugin
     auto_tag: true
-- name: Harness Plugin Test
+- name: Harness Plugin Test Pipeline
   image: diegokoala/drone-harness-plugin:latest
   settings:  
     application: "Harness Demo Application"
@@ -30,3 +30,20 @@ steps:
     wait_for_execution: "true"
     wait_for_execution_timeout: 30
     execution_notes: "Harness Plugin Automated Execution"
+- name: Harness Plugin Test Workflow
+  image: diegokoala/drone-harness-plugin:latest
+  settings:  
+    application: "Harness Demo Application"
+    type: "WORKFLOW"
+    entityname: "Complex Deployment Template-db"
+    accountid:
+      from_secret: harness_acctid
+    apikey: 
+      from_secret: harness_secret
+    service_name: "order-service"
+    build_number: "131"
+    artifact_source_name: "harness_todolist-sample_gcr"
+    wait_for_execution: "true"
+    wait_for_execution_timeout: 30
+    execution_notes: "Harness Plugin Automated Execution"
+    dynamic_variables_input: "Environment:development,InfraDefinition_Kubernetes:GKE Dev Cluster"
