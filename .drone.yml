@@ -2,11 +2,11 @@ kind: pipeline
 
 name: default
 steps:
-- name: build
+- name: Build
   image: python
   commands:
   - pip install -r requirements.txt
-- name: publish
+- name: Publish Latest
   image: plugins/docker
   settings:
     username: diegokoala
@@ -47,3 +47,12 @@ steps:
     wait_for_execution_timeout: 30
     execution_notes: "Harness Plugin Automated Execution"
     dynamic_variables_input: "Environment:development,InfraDefinition_Kubernetes:GKE Dev Cluster"
+- name: Publish Stable
+  image: plugins/docker
+  settings:
+    username: diegokoala
+    password: 
+      from_secret: DockerHub
+    repo: diegokoala/drone-harness-plugin
+    auto_tag: true
+    auto_tag_suffix: stable

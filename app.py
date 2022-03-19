@@ -119,7 +119,7 @@ if EXECUTION_TYPE == "WORKFLOW":
   print("Status:" + workflow_status)
   if WAIT_FOR_EXECUTION == "true":
     timeout = time.time() + 60*WAIT_FOR_EXECUTION_TIMEOUT   # 30 minutes from now
-    while workflow_status == "RUNNING":
+    while workflow_status == "RUNNING" or workflow_status == "PAUSED":
         time.sleep(15)
         workflow_status = status(execution_id['data']['startExecution']['execution']['id'])['data']['execution']['status']
         if workflow_status != "RUNNING" or time.time() > timeout:
@@ -134,7 +134,7 @@ else:
   print("Status:" + pipeline_status)
   if WAIT_FOR_EXECUTION == "true":
     timeout = time.time() + 60*30   # 30 minutes from now
-    while pipeline_status == "RUNNING":
+    while pipeline_status == "RUNNING" or pipeline_status == "PAUSED":
         time.sleep(15)
         pipeline_status = status(execution_id['data']['startExecution']['execution']['id'])['data']['execution']['status']
         if pipeline_status != "RUNNING" or time.time() > timeout:
