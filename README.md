@@ -5,22 +5,23 @@
 Limitations:
 
 1 - Your service needs an artifact
+
 2 - Your Workflow/Pipeline should templatize the service as "${Service}" variable as in input.
 
 ### Options
 
-ACCOUNTID "AccountID"
-APIKEY "4P1K3Y"
-APPLICATION "Harness Application Name"
-ENTITYNAME "Pipeline/Workflow Name"
-TYPE "PIPELINE or WORKFLOW"
-SERVICE_NAME "Service Name"
-BUILD_NUMBER "Artifact Build Version"
-ARTIFACT_SOURCE_NAME "Artifact Source Name"
-DYNAMIC_VARIABLES_INPUT "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true,key:value,key2:value2" 
-WAIT_FOR_EXECUTION "true or false"
-WAIT_FOR_EXECUTION_TIMEOUT "Number in minutes"
-EXECUTION_NOTES "Execution Notes"
+- ACCOUNTID: "AccountID"
+  APIKEY: "4P1K3Y"
+  APPLICATION: "Harness Application Name"
+  ENTITYNAME: "Pipeline/Workflow Name"
+  TYPE: "PIPELINE or WORKFLOW"
+  SERVICE_NAME: "Service Name"
+  BUILD_NUMBER: "Artifact Build Version"
+  ARTIFACT_SOURCE_NAME: "Artifact Source Name"
+  DYNAMIC_VARIABLES_INPUT: "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true,key:value,key2:value2" 
+  WAIT_FOR_EXECUTION: "true or false"
+  WAIT_FOR_EXECUTION_TIMEOUT: "Number in minutes"
+  EXECUTION_NOTES: "Execution Notes"
 
 ### Usage Harness CIE
 
@@ -30,7 +31,7 @@ EXECUTION_NOTES "Execution Notes"
   identifier: triggercd
   spec:
       connectorRef: account.dockerimageconnector
-      image: luisredda/drone-harness-plugin-param
+      image: diegokoala/drone-harness-plugin
       privileged: false
       settings:
           application: <App_Name>
@@ -56,7 +57,7 @@ EXECUTION_NOTES "Execution Notes"
 ### Usage Drone:
 
     - name: Harness Plugin
-      image: luisredda/drone-harness-plugin-param
+      image: diegokoala/drone-harness-plugin
       settings:  
         application: "Harness Demo Application"
         type: "PIPELINE"
