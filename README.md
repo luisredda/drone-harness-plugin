@@ -12,47 +12,47 @@ Known Limitations:
 
 ### Options
 
-- ACCOUNTID: "AccountID"
-  APIKEY: "4P1K3Y"
-  APPLICATION: "Harness Application Name"
-  ENTITYNAME: "Pipeline/Workflow Name"
-  TYPE: "PIPELINE or WORKFLOW"
-  SERVICE_NAME: "Service Name"
-  BUILD_NUMBER: "Artifact Build Version"
-  ARTIFACT_SOURCE_NAME: "Artifact Source Name"
-  DYNAMIC_VARIABLES_INPUT: "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true,key:value,key2:value2" 
-  WAIT_FOR_EXECUTION: "true or false"
-  WAIT_FOR_EXECUTION_TIMEOUT: "Number in minutes"
-  EXECUTION_NOTES: "Execution Notes"
+    ACCOUNTID: "AccountID"
+    APIKEY: "4P1K3Y"
+    APPLICATION: "Harness Application Name"
+    ENTITYNAME: "Pipeline/Workflow Name"
+    TYPE: "PIPELINE or WORKFLOW"
+    SERVICE_NAME: "Service Name"
+    BUILD_NUMBER: "Artifact Build Version"
+    ARTIFACT_SOURCE_NAME: "Artifact Source Name"
+    DYNAMIC_VARIABLES_INPUT: "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true,key:value,key2:value2" 
+    WAIT_FOR_EXECUTION: "true or false"
+    WAIT_FOR_EXECUTION_TIMEOUT: "Number in minutes"
+    EXECUTION_NOTES: "Execution Notes"
 
 ### Usage Harness CIE
 
-- step:
-  type: Plugin
-  name: Trigger Harness CD
-  identifier: triggercd
-  spec:
-      connectorRef: account.dockerimageconnector
-      image: diegokoala/drone-harness-plugin
-      privileged: false
-      settings:
-          application: <App_Name>
-          type: PIPELINE
-          entityname: <PipeID>
-          accountid: <AccountID>
-          apikey: <ApiKey>
-          service_name: <ServiceName>
-          build_number: <BuildVersion>
-          artifact_source_name: <ArtifactSourceName>
-          dynamic_variables_input: "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true"
-          wait_for_execution: "true"
-          wait_for_execution_timeout: 30
-          execution_notes: "Automated Execution"
-      imagePullPolicy: Always
-  when:
-      stageStatus: Success
-      condition: <+execution.steps.profile.output.outputVariables.PROFILE> != 'dev'
-  failureStrategies: []
+    - step:
+      type: Plugin
+      name: Trigger Harness CD
+      identifier: triggercd
+      spec:
+          connectorRef: account.dockerimageconnector
+          image: diegokoala/drone-harness-plugin
+          privileged: false
+          settings:
+              application: <App_Name>
+              type: PIPELINE
+              entityname: <PipeID>
+              accountid: <AccountID>
+              apikey: <ApiKey>
+              service_name: <ServiceName>
+              build_number: <BuildVersion>
+              artifact_source_name: <ArtifactSourceName>
+              dynamic_variables_input: "Environment:dev,InfraDefinition_KUBERNETES:eks-transactional-carbono-dev,run_terraform:true"
+              wait_for_execution: "true"
+              wait_for_execution_timeout: 30
+              execution_notes: "Automated Execution"
+          imagePullPolicy: Always
+      when:
+          stageStatus: Success
+          condition: <+execution.steps.profile.output.outputVariables.PROFILE> != 'dev'
+      failureStrategies: []
 
 
 
