@@ -49,9 +49,6 @@ Known Limitations:
               wait_for_execution_timeout: 30
               execution_notes: "Automated Execution"
           imagePullPolicy: Always
-      when:
-          stageStatus: Success
-          condition: <+execution.steps.profile.output.outputVariables.PROFILE> != 'dev'
       failureStrategies: []
 
 
