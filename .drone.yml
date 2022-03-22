@@ -9,13 +9,13 @@ steps:
 - name: Publish Latest
   image: plugins/docker
   settings:
-    username: diegokoala
+    username: luisredda
     password: 
-      from_secret: DockerHub
-    repo: diegokoala/drone-harness-plugin
+      from_secret: p_docker
+    repo: luisredda/drone-harness-plugin
     auto_tag: true
 - name: Harness Plugin Test Pipeline
-  image: diegokoala/drone-harness-plugin:latest
+  image: luisredda/drone-harness-plugin:latest
   settings:  
     application: "Harness Demo Application"
     type: "PIPELINE"
