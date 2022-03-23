@@ -48,7 +48,7 @@ steps:
     execution_notes: "Harness Plugin Automated Execution"
     dynamic_variables_input: "Environment:development,InfraDefinition_Kubernetes:GKE Dev Cluster"
 - name: Harness Plugin Test Pipeline Error Test
-  image: diegokoala/drone-harness-plugin:latest
+  image: luisredda/drone-harness-plugin:latest
   failure: ignore
   settings:  
     application: "Harness Demo Application"
@@ -68,9 +68,9 @@ steps:
 - name: Publish Stable
   image: plugins/docker
   settings:
-    username: diegokoala
+    username: luisredda
     password: 
-      from_secret: DockerHub
-    repo: diegokoala/drone-harness-plugin
+      from_secret: p_docker
+    repo: luisredda/drone-harness-plugin
     auto_tag: true
     auto_tag_suffix: stable
