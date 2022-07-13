@@ -128,7 +128,7 @@ if EXECUTION_TYPE == "WORKFLOW":
         if time.time() > timeout:
             sys.exit(777)
     if RETURN_ERROR_IF_EXECUTION_FAIL == "true" and (workflow_status == "FAILED" or workflow_status == "ABORTED" or workflow_status == "EXPIRED" or workflow_status == "REJECTED" or workflow_status == "ERROR"):
-      sys.exit(333)
+      sys.exit(-1)
   print(workflow_status)
 
 else:
