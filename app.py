@@ -145,7 +145,7 @@ else:
         if time.time() > timeout:
             sys.exit(777)
     if RETURN_ERROR_IF_EXECUTION_FAIL == "true" and (pipeline_status == "FAILED" or pipeline_status == "ABORTED" or pipeline_status == "EXPIRED" or pipeline_status == "REJECTED" or pipeline_status == "ERROR"):
-      sys.exit(333)
+      sys.exit(-1)
   print(pipeline_status)
 
 
