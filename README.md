@@ -2,7 +2,7 @@
 
 ## Harness CIE / Drone Plugin to trigger Pipelines or Workflows in Harness using API key.
 
-Inspired by Luis Redda work
+Inspired by Luis Redda work :-) 
 
 Known Limitations:
 
@@ -95,3 +95,5 @@ You can add to the Dockerfile
     ENV PLUGIN_WAIT_FOR_EXECUTION "true"
     ENV PLUGIN_WAIT_FOR_EXECUTION_TIMEOUT "30"
     ENV PLUGIN_EXECUTION_NOTES "Automated Execution"
+
+Thank you!
